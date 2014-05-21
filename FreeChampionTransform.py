@@ -2,50 +2,34 @@
 
 import re
 
-raw_string = u'''raw string =
-執法者－凱特琳
 
-牛頭酋長－亞歷斯塔
-　
-
-蒂瑪西亞楷模－嘉文四世
-　
-
-蒂瑪西亞總管－趙信
-　
-
-孤高劍客－菲歐拉
-　
-
-暮光之眼－慎
-　
-
-遠古魔導－齊勒斯
-　
-
-酒桶之王－古拉格斯
-　
-
-虛空掠食者－卡力斯
-　
-
-暗影之拳－阿卡莉
-'''
+def load_champions_list():
+    context = ''
+    with open("ChampionsList.txt", 'r') as file:
+        for line in file:
+            context += line
+    return context
 
 
 # 找出所有「－」字元後的名字回傳
-def find_all_name(string):
-    pattern = u'－(.*)'
-    return re.findall(pattern, string)
+def find_all_names(context):
+    pattern = '－(.*)'
+    return re.findall(pattern, context)
 
 
-results = find_all_name(raw_string)
+context = load_champions_list()
+results = find_all_names(context)
+
 count = len(results)
 result = '\"' + '\",\"'.join(results) + '\"'
 
-if count != 10:
-    print '數量錯誤，結果有 %d 筆。' % count
+print u'完成：', result.decode('utf-8')
+with open("Champions.txt", 'w') as file:
+    file.write(result)
+print u'此結果將同時輸出到檔案「Champions.txt」。'
 
-print result
+if count != 10:
+    print u'　　注意！本次共有', count, u'名英雄。'
+
 print u'請按 Enter 鍵終止。'
 raw_input('')
