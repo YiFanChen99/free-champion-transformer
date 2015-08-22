@@ -1,4 +1,3 @@
-# -*- coding:utf-8 -*-
 
 import re
 import os
@@ -24,8 +23,8 @@ def find_all_names(context):
 # 記錄原始列表
 open(input_file, 'a').close()
 os.startfile(input_file)
-print u'請在該文件中貼上原始的英雄列表。\n並於儲存後按 Enter 繼續。'
-raw_input('')
+print('請在該文件中貼上原始的英雄列表。\n並於儲存後按 Enter 繼續。')
+input('')
 
 # 讀取並收集所有的英雄名稱
 context = load_champions_list()
